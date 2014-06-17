@@ -10,13 +10,18 @@ class Media < BasicElectionAgent
         @readership = readership.to_i
 		@quality = quality.to_i || 5
     end
-	
 	def add_reader
 		change_readership_by(1)
 	end
-	
 	def remove_reader
 		change_readership_by(-1)
+	end
+	def conduct_poll
+	end
+	def write_article
+		# In response to candidate#announcement. Costs $ * quality
+	end
+	def choose_candidate
 	end
 	
 	private
