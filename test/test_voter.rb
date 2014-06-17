@@ -28,7 +28,7 @@ class VoterTests < Test::Unit::TestCase
 	other_issue_set = Hash.new
 	other_issue_set[ 'airport' ] = Issue.new('airport',0.8,0.6)
 	other_issue_set[ 'waste' ] = Issue.new('waste',0.8,0.6)
-	@voter.alignment(other_issue_set)
+	@voter.measure_alignment(other_issue_set)
   end
   
   def test_payday
