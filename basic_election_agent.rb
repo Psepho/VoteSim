@@ -1,6 +1,6 @@
 module Logger
     def log(msg)
-        STDERR.puts Time.now.strftime("%H:%M:%S: ") + "#{self} (#{msg})"
+        "#{self} (#{msg})"
     end
 end
 
@@ -12,12 +12,12 @@ class BasicElectionAgent
     attr_accessor :issue_set, :savings
     attr_reader :location, :cashflow, :tractability
     
-    def initialize(location, cashflow = 0, savings = 0, tractability = 0.1)
-        @location = location
+    def initialize(params)
+        @location = params[0]
         @issue_set = Hash.new
-        @cashflow = cashflow.to_i # Monthly income/expenses
-        @savings = savings.to_i
-        @tractability = tractability.to_f
+        @cashflow = params[1].to_i || 0 # Monthly income/expenses
+        @savings = params[2].to_i || 0
+        @tractability = params[3].to_f || 0.1
     end
     
     def add_issue(name, position, weight)
@@ -28,11 +28,10 @@ class BasicElectionAgent
         @issue_set[ name ].position += position_amount
         @issue_set[ name ].weight += weight_amount
         log("Changed issue")
-        #@issue_set [ name ]
-    
     end
     
     def payday
         @savings += @savings + cashflow
+		log("Payday")
     end
 end
