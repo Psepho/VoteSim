@@ -4,8 +4,8 @@ class Media < BasicElectionAgent
     
     attr_accessor :readership
     
-    def initialize(readership, location, cashflow = 0, savings = 0, tractability = 0.1)
-        super(location, cashflow, savings, tractability)
+    def initialize(readership, *basic_election_agent)
+        super basic_election_agent
         @readership = readership.to_i
     end
     
