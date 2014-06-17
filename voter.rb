@@ -3,8 +3,8 @@ require_relative 'basic_election_agent.rb'
 class Voter < BasicElectionAgent
     
     attr_reader :age, :income
-    def initialize(age, income, location, cashflow = 0, savings = 0, tractability = 0.1)
-        super(location, cashflow, savings, tractability)
+    def initialize(age, income, *basic_election_agent)
+        super basic_election_agent
         @age = age
         @income = income
         @location = location
