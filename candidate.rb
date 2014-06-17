@@ -7,9 +7,13 @@ class Candidate < BasicElectionAgent
 		@name = name.to_s
 		@name_recognition = name_recognition.to_i
     end
-	def make_announcement
-		# Choose issue and make announcement, which costs $
+	def make_announcement(type)
+		# Choose issue and make announcement, which costs $ (by type)
     end
+	def join_election
+		# Based on poll results and function of name_recognition and savings.
+		# Big candidates need large support before entering
+	end
 	def leave_election
 		# If savings too low, drop from race
 	end
@@ -18,5 +22,9 @@ class Candidate < BasicElectionAgent
 	end
 	def adjust_name_recognition(amount)
 		@name_recognition += amount.to_i
+		# Also increment cash flow? Might get more expensive with size
+	end
+	def read_news
+		# Review polls in particular
 	end
 end
