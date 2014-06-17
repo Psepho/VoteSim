@@ -31,7 +31,7 @@ class BasicElectionAgent
     end
     
     def payday
-        @savings += @savings + cashflow
+        @savings += cashflow
 		log("Payday")
     end
 end
