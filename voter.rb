@@ -2,7 +2,7 @@ require_relative 'basic_election_agent.rb'
 
 class Voter < BasicElectionAgent
     
-    attr_reader :age, :income
+    attr_reader :age, :income, :subscribed_media
 	attr_accessor :candidate_likeability
 	
     def initialize(age, income, *basic_election_agent)
@@ -10,7 +10,8 @@ class Voter < BasicElectionAgent
         @age = age
         @income = income
         @location = location
-		@candidate_likeability = Hash.new
+		@candidate_likeability = Array.new
+		@subscribed_media = Hash.new
     end
     def to_s
         puts "#{self.class} #{self.object_id} with age = #{age} and issues #{@issue_set}"
@@ -31,8 +32,12 @@ class Voter < BasicElectionAgent
 		# If past turnout threshold, vote for #choose_candidate
 	end
 	def respond_to_poll
+		# Issue and candidate polls, add noise based on candidate likeability (accommodates uncertainty in position, as perceived by voter)
 	end
 	def adjust_candidate_likeability(candidate, amount)
 		@candidate_likeability[candidate.name] += amount
+	end
+	def choose_media(media)
+		@subscribed_media << media
 	end
 end
