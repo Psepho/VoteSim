@@ -8,5 +8,9 @@ class Media < BasicElectionAgent
         super basic_election_agent
         @readership = readership.to_i
     end
+	
+	def change_readership_by(amount)
+		@readership += amount.to_i
+	end
     
 end
