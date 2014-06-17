@@ -2,16 +2,17 @@ require_relative 'basic_election_agent.rb'
 
 class Voter < BasicElectionAgent
     
-    attr_reader :age, :income, :subscribed_media
+    attr_reader :age, :income, :subscribed_media, :engagement
 	attr_accessor :candidate_likeability
 	
-    def initialize(age, income, *basic_election_agent)
+    def initialize(age, income, engagement, *basic_election_agent)
         super basic_election_agent
         @age = age
         @income = income
-        @location = location
+        @engagement = engagement
 		@candidate_likeability = Array.new
 		@subscribed_media = Hash.new
+		# @cashflow = @engagement * @income * 0.1
     end
     def to_s
         puts "#{self.class} #{self.object_id} with age = #{age} and issues #{@issue_set}"
@@ -22,8 +23,10 @@ class Voter < BasicElectionAgent
 	def unsubscribe
 		# find media, decrement readership, subtract from media cashflow, and add to self cashflow
 	end
-	def donate
+	def start_donation
 		# find candidate, subtract from self cashflow, and add to candidate cashflow
+	end
+	def stop_donation
 	end
     def choose_candidate
 		# Scan through issue_set of each candidate and calculate the sum of squared differences for each issue Sum(position*weight)*candidate_likeability. Then choose the candidate with the minimum value
