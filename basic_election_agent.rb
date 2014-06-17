@@ -1,6 +1,6 @@
 module Logger
     def log(msg)
-        "#{self} (#{msg})"
+        puts "#{self} (#{msg})"
     end
 end
 
