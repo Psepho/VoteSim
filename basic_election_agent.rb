@@ -10,7 +10,7 @@ class BasicElectionAgent
     
     include Logger
     attr_accessor :issue_set, :savings
-    attr_reader :location, :cashflow, :tractability
+    attr_reader :location, :cashflow, :tractability#, :party_affiliation
     
     def initialize(params)
         @location = params[0]
@@ -29,6 +29,13 @@ class BasicElectionAgent
         @issue_set[ name ].weight += weight_amount
         log("Changed issue")
     end
+	
+	def alignment(other_issue_set)
+		# Take self.issue_set and calculate alignment with other_issue_set
+		@issue_set.each do | issue |
+			log("#{issue.name}: #{issue.position*issue.weight}")
+		end
+	end
     
     def payday
         @savings += cashflow
