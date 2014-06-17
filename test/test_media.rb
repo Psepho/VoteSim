@@ -4,14 +4,15 @@ require './media'
 class MediaTests < Test::Unit::TestCase
   
   def setup
-    @news = Media.new(10,'toronto',100,1000,0)
+    @news = Media.new(10,8,'toronto',100,1000,0)
   end
   
   def test_media_initialization
     assert_equal('toronto', @news.location)
-	assert_equal(10, @news.readership)
+    assert_equal(10, @news.readership)
     assert_equal(100, @news.cashflow)
     assert_equal(1000, @news.savings)
+    assert_equal(8, @news.quality)
   end
   
   def test_payday
@@ -20,8 +21,8 @@ class MediaTests < Test::Unit::TestCase
   end
   
   def test_readership
-	assert_equal(11, @news.add_reader)
-	assert_equal(10, @news.remove_reader)
+  	assert_equal(11, @news.add_reader)
+  	assert_equal(10, @news.remove_reader)
   end
   
 end
