@@ -1,5 +1,6 @@
 class Issue
-    
+
+	include Comparable
     attr_accessor :position, :weight
     attr_reader :name
     
@@ -8,4 +9,8 @@ class Issue
         @position = position
         @weight = weight
     end
+	
+	def <=>(other)
+		self.name <=> other.name
+	end
 end
