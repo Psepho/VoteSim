@@ -27,18 +27,21 @@ class BasicElectionAgent
     def change_issue(name, position_amount, weight_amount)
         @issue_set[ name ].position += position_amount
         @issue_set[ name ].weight += weight_amount
-        log("Changed issue")
+        #log("Changed issue")
     end
 	
-	def alignment(other_issue_set)
+	def measure_alignment(other_issue_set)
 		# Take self.issue_set and calculate alignment with other_issue_set
-		@issue_set.each do | issue |
-			log("#{issue.name}: #{issue.position*issue.weight}")
+		alignment = 0
+		@issue_set.each do | title, issue |
+			other_issue = other_issue_set[title]
+			alignment += (issue.position*issue.weight - other_issue.position*other_issue.weight)**2
 		end
+		alignment
 	end
     
     def payday
         @savings += cashflow
-		log("Payday")
+		#log("Payday")
     end
 end
