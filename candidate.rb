@@ -1,11 +1,15 @@
 require_relative 'basic_election_agent.rb'
 
 class Candidate < BasicElectionAgent
+
+	attr_reader :name
+    attr_accessor :name_recognition, :party_membership
     
     def initialize(name, name_recognition, *basic_election_agent)
         super basic_election_agent
 		@name = name.to_s
 		@name_recognition = name_recognition.to_i
+		@party_membership = "None" # Voters can belong to more than one party, stored as a hash
     end
 	def make_announcement(type)
 		# Choose issue and make announcement, which costs $ (by type)
@@ -26,5 +30,8 @@ class Candidate < BasicElectionAgent
 	end
 	def read_news
 		# Review polls in particular
+	end
+	def change_party_membership(party)
+		@party_membership = party
 	end
 end
