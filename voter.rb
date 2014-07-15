@@ -2,15 +2,18 @@ require_relative 'basic_election_agent.rb'
 
 class Voter < BasicElectionAgent
     
-    attr_reader :age, :subscribed_media, :engagement
+    attr_reader :age, :subscribed_media, :engagement, :party_membership
     attr_accessor :candidate_likeability
     
-    def initialize(age, engagement, *basic_election_agent)
+    def initialize(age, sex, engagement, *basic_election_agent)
         super basic_election_agent
         @age = age
+        @sex = sex
         @engagement = engagement
-        @candidate_likeability = Array.new
+        @candidate_likeability = Hash.new
+        @candidate_knowledge = Hash.new
         @subscribed_media = Hash.new
+        @party_membership = Hash.new
         # @cashflow = @engagement * @income * 0.1
     end
     def to_s
@@ -39,7 +42,16 @@ class Voter < BasicElectionAgent
     def adjust_candidate_likeability(candidate, amount)
         @candidate_likeability[candidate.name] += amount
     end
+    def adjust_candidate_knowledge(candidate, amount)
+        @candidate_knowledge[candidate.name] += amount
+    end
     def choose_media(media)
         @subscribed_media << media
+    end
+    def join_party(party)
+        @party_membership[party] = 1
+    end
+    def leave_party(party)
+        @party_membership[party] = 0
     end
 end
