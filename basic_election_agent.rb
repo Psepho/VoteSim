@@ -9,7 +9,7 @@ require_relative 'issues.rb'
 class BasicElectionAgent
     
     include Logger
-    attr_accessor :issue_set, :savings
+    attr_accessor :election, :issue_set, :savings
     attr_reader :location, :cashflow, :tractability#, :party_affiliation
     
     def initialize(params)
@@ -18,6 +18,7 @@ class BasicElectionAgent
         @cashflow = params[1].to_i || 0 # Monthly income/expenses
         @savings = params[2].to_i || 0
         @tractability = params[3].to_f || 0.1
+        @election = params[4]
     end
     
     def add_issue(name, position, weight)
