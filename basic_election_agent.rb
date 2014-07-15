@@ -21,12 +21,13 @@ class BasicElectionAgent
     end
     
     def add_issue(name, position, weight)
-        @issue_set[ name ] = Issue.new(name, position, weight)
+        @issue_set[ name ] = Issue.new(name, position, weight, tractability)
     end
     
-    def change_issue(name, position_amount, weight_amount)
+    def change_issue(name, position_amount, weight_amount, tractability_amount)
         @issue_set[ name ].position += position_amount
         @issue_set[ name ].weight += weight_amount
+        @issue_set[ name ].tractability += tractability_amount
         #log("Changed issue")
     end
 	
@@ -35,7 +36,7 @@ class BasicElectionAgent
 		alignment = 0
 		@issue_set.each do | title, issue |
 			other_issue = other_issue_set[title]
-			alignment += (issue.position*issue.weight - other_issue.position*other_issue.weight)**2
+			alignment += (issue.weight + other_issue.weight)/(issue.position - other_issue.position)**2
 		end
 		alignment
 	end
