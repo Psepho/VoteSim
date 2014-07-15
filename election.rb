@@ -16,7 +16,7 @@ class Election
     end
     def setup_voters
         CSV.foreach("voters.csv", headers: true, converters: :numeric) do |row|
-            voter = Voter.new(row["age"],row["engagement"],row["location"],row["cash_flow"],row["savings"],row["tractability"]) unless row.empty?
+            voter = Voter.new(row["age"],row["engagement"],row["location"],row["cash_flow"],row["savings"],row["tractability"], self) unless row.empty?
             @voters << voter
         end
     end
