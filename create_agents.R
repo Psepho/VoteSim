@@ -16,7 +16,7 @@ simulations <- 15 # Number of iterations to run
 sims <- rep(1:simulations, each = n)
 agents <- to_voters(voters, n)
 for (i in 2:simulations) {
-  agents <- rbind_list(agents, to_voters(voters, n))
+  agents <- bind_rows(agents, to_voters(voters, n))
 }
 agents <- data.frame(sim = sims, agents)
 rm(sims)
